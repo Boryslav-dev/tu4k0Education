@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Framework\Database;
+
+use PDO;
+use PDOStatement;
 use Symfony\Component\Dotenv\Dotenv;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -9,6 +13,8 @@ class Database
 {
     private static PDO $connection;
     private PDOStatement $sqlQuery;
+    private int $mode = PDO::FETCH_ASSOC;
+    private string $fetchType = 'All';
     private static string $table;
     private string|array $selectParams = '';
     private array $whereCondition = [];
@@ -19,9 +25,10 @@ class Database
     private bool $deleteCondition = false;
     private string $sqlStatement = '';
 
+
     /**
      * @param string $table
-     * @return \Database
+     * @return \Framework\Database\Database
      */
     public static function table(string $table): Database
     {
@@ -98,7 +105,7 @@ class Database
 
     /**
      * @param string $column
-     * @param \Database|array $selectQuery
+     * @param \Framework\Database\Database|array $selectQuery
      * @return $this
      */
     public function whereIn(string $column, Database|array $selectQuery): Database
@@ -157,16 +164,45 @@ class Database
     /**
      * @return array
      */
-    public function get(): array
+    public function get(): mixed
     {
         $this->toSql();
         if ($this->executeQuery()) {
-            $result = $this->sqlQuery->fetchAll(PDO::FETCH_ASSOC);
+            switch ($this->fetchType) {
+                case 'All':
+                    $result = $this->sqlQuery->fetchAll($this->mode);
+                    break;
+                case 'Object':
+                    $result = $this->sqlQuery->fetchObject(self::class);
+                    break;
+            }
         } else {
             $result = null;
         }
 
         return $result;
+    }
+
+    /**
+     * @param $fetchType
+     * @return $this
+     */
+    public function setFetchType($fetchType)
+    {
+        $this->fetchType = $fetchType;
+
+        return $this;
+    }
+
+    /**
+     * @param $mode
+     * @return $this
+     */
+    public function setFetchMode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
     }
 
     /**
@@ -207,6 +243,14 @@ class Database
         $this->executeQuery();
 
         return $this->sqlQuery->rowCount();
+    }
+
+    /**
+     * @return \PDOStatement
+     */
+    public function getSqlQuery()
+    {
+        return $this->sqlQuery;
     }
 
     /**
@@ -261,12 +305,13 @@ class Database
             );
         } if ($this->updateParams) {
             $this->sqlStatement .= sprintf(
-                "UPDATE %s SET ",
-                self::$table
+                "UPDATE %s SET %s ",
+                self::$table,
+                implode(', ', array_map(function ($value) {
+                    return $value . '=:' . $value;
+                },
+                    array_keys($this->updateParams)))
             );
-            foreach (array_keys($this->updateParams) as $attribute) {
-                $this->sqlStatement .= "$attribute=:$attribute ";
-            };
         } if ($this->deleteCondition) {
             $this->sqlStatement .= sprintf(
                 "DELETE FROM %s ",
