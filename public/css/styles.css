@@ -1,0 +1,252 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #0f1429;
+}
+
+header
+{
+    display: flex;
+    height: 80px;
+    justify-content: center;
+}
+
+img
+{
+    margin-top: 3px;
+    width: 60px;
+    padding: 5px;
+    float: left;
+    opacity: 1;
+}
+
+.navbar ul
+{
+    list-style: none;
+}
+
+.navbar ul li
+{
+    float: left;
+    margin-left: 20px;
+}
+
+.navbar ul li a
+{
+    display: block;
+    color: #e0fbfc;
+    font-size: 20px;
+    font-family: monospace;
+    line-height: 40px;
+    padding: 0 30px;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover
+{
+    background-color: dodgerblue;
+}
+
+.navbar
+{
+    justify-content: center;
+    float: right;
+}
+
+footer
+{
+    position:absolute;
+    bottom:0;
+    width: 100%;
+}
+
+.socials
+{
+    display: flex;
+    justify-content: center;
+}
+
+.socials a
+{
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.socials a i
+{
+    font-size: 25px;
+}
+
+.footer-navigation
+{
+    margin: 10px;
+}
+
+.footer-navigation ul
+{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-navigation ul li
+{
+    list-style: none;
+}
+
+.footer-navigation ul li a
+{
+    margin: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: monospace;
+    color: #e0fbfc;
+}
+
+.footer-navigation ul li a:hover
+{
+    background-color: dodgerblue;
+}
+
+.footer-bottom
+{
+    display: flex;
+    justify-content: center;
+}
+
+.footer-bottom p
+{
+    font-size: 15px;
+    color: #e0fbfc;
+    font-family: monospace;
+}
+
+.login-form
+{
+    display: block;
+    padding: 10px;
+    margin-top: 200px;
+    margin-right: 500px;
+    margin-left: 500px;
+}
+
+.login-form img
+{
+    display: block;
+    position: absolute;
+    left: 48%;
+}
+
+.login-header
+{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.login-header2
+{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.login-form p
+{
+    font-family: monospace;
+    color: #e0fbfc;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.login-form .login-data
+{
+    width: 100%;
+    padding: 12px;
+    border-radius: 40px;
+}
+
+.login-form button
+{
+    margin: 50px auto 0;
+    display: block;
+    top:50%;
+    background-color: #ee6c4d;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 30px;
+    min-width: 120px;
+    font-size: 20px;
+}
+
+.authorization-form
+{
+    display: block;
+    padding: 10px;
+    margin-top: 100px;
+    margin-right: 500px;
+    margin-left: 500px;
+}
+
+.authorization-form img
+{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-left: 380px;
+    margin-right: auto;
+}
+
+.authorization-header
+{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.login-header2
+{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.authorization-form p
+{
+    font-family: monospace;
+    color: #e0fbfc;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.authorization-form .authorization-data
+{
+    width: 100%;
+    padding: 12px;
+    border-radius: 40px;
+    font-size: 20px;
+}
+
+.authorization-form button
+{
+    margin: 50px auto 0;
+    display: block;
+    top:50%;
+    background-color: #293241;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 30px;
+    min-width: 120px;
+    font-size: 20px;
+}
