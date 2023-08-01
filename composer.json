@@ -2,7 +2,8 @@
     "name": "tu4k0/tu4k0education",
     "autoload": {
         "psr-4": {
-            "Tu4k0\\Tu4k0education\\": "src/"
+            "Framework\\": "core/",
+            "src\\": "src/"
         }
     },
     "authors": [
@@ -12,6 +13,7 @@
         }
     ],
     "require": {
-        "symfony/dotenv": "^6.3"
+        "symfony/dotenv": "^6.3",
+        "ext-pdo": "*"
     }
 }
